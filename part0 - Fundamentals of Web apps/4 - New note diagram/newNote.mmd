@@ -1,0 +1,22 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+    participant DOM
+
+    Browser->>Server: POST /exampleapp/new_note (form data)
+    activate Server
+    Server-->>Browser: 302 Redirect to /exampleapp/notes
+    deactivate Server
+
+    Browser->>Server: GET /exampleapp/notes (new page)
+    activate Server
+    Server-->>Browser: HTML document
+    deactivate Server
+
+    Browser->>Server: GET /exampleapp/data.json
+    activate Server
+    Server-->>Browser: JSON notes
+    deactivate Server
+
+    Browser->>DOM: create <ul> and <li> elements
+    Browser->>DOM: render updated notes list

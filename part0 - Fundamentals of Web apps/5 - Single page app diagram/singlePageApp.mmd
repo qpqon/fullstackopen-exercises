@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+    participant DOM
+
+    Browser->>Server: GET /exampleapp/spa
+    activate Server
+    Server-->>Browser: HTML document + spa.js
+    deactivate Server
+
+    Browser->>Browser: execute spa.js
+    Browser->>Server: GET /exampleapp/data.json
+    activate Server
+    Server-->>Browser: JSON notes
+    deactivate Server
+
+    Browser->>Browser: JSON.parse(response)
+    Browser->>DOM: create <ul> and <li> elements
+    Browser->>DOM: render notes list

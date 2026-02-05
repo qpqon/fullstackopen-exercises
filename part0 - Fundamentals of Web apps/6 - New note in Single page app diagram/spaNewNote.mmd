@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+    participant DOM
+
+    Browser->>Browser: User submits form
+    Browser->>Browser: preventDefault()
+
+    Browser->>DOM: update local notes state
+    Browser->>DOM: redraw notes list
+
+    Browser->>Server: POST /exampleapp/new_note_spa (JSON note)
+    activate Server
+    Server-->>Browser: 201 Created
+    deactivate Server
